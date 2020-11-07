@@ -1,0 +1,17 @@
+{
+  "extends": "tslint:recommended",
+  "rules": {
+    "max-line-length": {
+      "options": [100]
+    },
+    "member-ordering": false,
+    "no-consecutive-blank-lines": false,
+    "object-literal-sort-keys": false,
+    "ordered-imports": false,
+    "quotemark": [true, "single", "avoid-escape"],
+    "variable-name": [true, "allow-leading-underscore"],
+    "trailing-comma": false,
+    "interface-name": true,
+    "only-arrow-functions": true
+  }
+}
