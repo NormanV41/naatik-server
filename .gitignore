@@ -45,3 +45,5 @@ yarn.lock
 secrets.json
 
 public/
+
+lib/
