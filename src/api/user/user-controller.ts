@@ -31,7 +31,7 @@ export const get = (
   response: Response,
   next: NextFunction
 ) => {
-  userModel.find(undefined, '-password', (error, users) => {
+  userModel.find({}, '-password', (error, users) => {
     if (error) {
       next(error);
       return;
