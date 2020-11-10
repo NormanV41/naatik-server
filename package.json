@@ -1,5 +1,5 @@
 {
-  "name": "servicio-sap-app-server",
+  "name": "naatik-server",
   "version": "1.0.0",
   "description": "server for servicio-sap-app",
   "main": "lib/index.js",

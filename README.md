@@ -32,3 +32,15 @@ enable access control in mongod modifying file /etc/mongod.conf adding
 security:
   authorization: enabled
 ```
+
+create a the following file
+```
+// secrets.json
+{
+  "jwtDev": string,
+  "emailPassword": string,
+  "dbPassword": string,
+  "dbUsername": string
+}
+
+```
