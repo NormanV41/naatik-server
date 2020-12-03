@@ -3,9 +3,12 @@ import { development } from './develpoment';
 import { production } from './production';
 import { testing } from './testing';
 import { readFileSync } from 'fs';
+import { join } from 'path';
+
+const secretsPath = join(__dirname,'../../secrets.json')
 
 const secrets = JSON.parse(
-  readFileSync('./secrets.json', { encoding: 'utf8' })
+  readFileSync(secretsPath, { encoding: 'utf8' })
 ) as {
   jwtDev: string;
   emailPassword: string;
