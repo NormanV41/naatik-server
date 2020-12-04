@@ -8,7 +8,7 @@ const staticPath = join(__dirname, '/../../../public/assets/img/');
 
 const storage = multer.diskStorage({
   destination: (request, file, callback) => {
-    callback(null, 'public/assets/img/');
+    callback(null, config.appRoot+'public/assets/img/');
   },
   filename: (request, file, callback) => {
     const name = new Date().toJSON() + file.originalname;

@@ -7,10 +7,11 @@ import { ICustomRequest } from '../../util/custom-request';
 import { NoElementError } from '../../util/no-element-error';
 import { getQueryParams, setFileName } from '../../util/methods';
 import { logger } from '../../util/logger';
+import { config } from '../../config/config';
 
 const storage = multer.diskStorage({
   destination: (request, file, callback) => {
-    callback(null, 'public/assets/img/');
+    callback(null, config.appRoot+'public/assets/img/');
   },
   filename: (request, file, callback) => {
     const name = new Date().toJSON() + file.originalname;
