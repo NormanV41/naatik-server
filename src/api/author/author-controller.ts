@@ -26,7 +26,7 @@ export const param = (
   next: NextFunction,
   id: string
 ) => {
-  authorModel.findById(id, (error, author) => {
+  authorModel.findById(id,undefined,undefined, (error, author) => {
     if (error) {
       next(error);
       return;
@@ -112,7 +112,7 @@ export const del = (
     next(new NoElementError());
     return;
   }
-  author.remove((error, result) => {
+  author.remove(undefined,(error, result) => {
     if (error) {
       next(error);
       return;

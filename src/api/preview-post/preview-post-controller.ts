@@ -26,7 +26,7 @@ export const param = (
   next: NextFunction,
   id: string
 ) => {
-  previewPostModel.findById(id, (error, previewPost) => {
+  previewPostModel.findById(id,undefined,undefined, (error, previewPost) => {
     if (error) {
       next(error);
       return;
@@ -120,7 +120,7 @@ export const del = (
     next(new NoElementError());
     return;
   }
-  previewPost.remove((error, result) => {
+  previewPost.remove(undefined,(error, result) => {
     if (error) {
       next(error);
       return;
