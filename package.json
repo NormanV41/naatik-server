@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write \"**/*.ts\" \"**/*.html\" \"**/*.scss\" \"**/*.json\"",
     "dev": "ts-node-dev --respawn --transpileOnly ./src/index.ts",
-    "prod": "tsc -p . && APP_ROOT=./ node ./lib/index.js",
+    "prod-development": "tsc -p . && APP_ROOT=./ node ./lib/index.js",
     "inspect": "tsc -p . && node --inspect-brk lib/index.js && rm -r lib/",
     "lint": "tslint \"src/**/*.ts\""
   },
