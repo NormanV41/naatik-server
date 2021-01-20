@@ -12,7 +12,7 @@ export const param = (
   next: NextFunction,
   id: string
 ) => {
-  userModel.findById(id, '-password', (error, user) => {
+  userModel.findById(id, '-password',undefined, (error, user) => {
     if (error) {
       next(error);
       return;
@@ -31,7 +31,7 @@ export const get = (
   response: Response,
   next: NextFunction
 ) => {
-  userModel.find({}, '-password', (error, users) => {
+  userModel.find({}, '-password',undefined, (error, users) => {
     if (error) {
       next(error);
       return;
@@ -87,7 +87,7 @@ export const del = (
   next: NextFunction
 ) => {
   const user = request.userRequested as IUser;
-  user.remove((error, result) => {
+  user.remove(undefined,(error, result) => {
     if (error) {
       next(error);
       return;

@@ -20,7 +20,7 @@ export const decodeToken = () => {
 export const getFreshUser = () => {
   return (request: ICustomRequest, response: Response, next: NextFunction) => {
     const user = request.user as { _id: string };
-    userModel.findById(user._id, '-password', (error, userDocument) => {
+    userModel.findById(user._id, '-password',undefined, (error, userDocument) => {
       if (error) {
         next(error);
         return;
@@ -43,7 +43,7 @@ export const verifyUSer = () => {
       response.status(400).send('You need a username and password');
       return;
     }
-    userModel.findOne({ username }, (error, user) => {
+    userModel.findOne({ username },undefined,undefined, (error, user) => {
       if (error) {
         next(error);
         return;

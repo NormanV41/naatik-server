@@ -107,7 +107,7 @@ export const post = (
   postModel.create(request.body).then(
     (postDocument) => {
       previewPostModel.findById(
-        postDocument.preview,
+        postDocument.preview,undefined,undefined,
         (errorFindingPreview, preview) => {
           if (errorFindingPreview) {
             handleErrorAfterPostWasCreated(
@@ -157,7 +157,7 @@ export const del = (
     next(new NoElementError());
     return;
   }
-  postDocument.remove((error, result) => {
+  postDocument.remove(undefined,(error, result) => {
     if (error) {
       next(error);
       return;

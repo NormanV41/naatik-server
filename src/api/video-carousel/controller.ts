@@ -12,7 +12,7 @@ export const param = (
   next: NextFunction,
   id: string
 ) => {
-  videoCarouselModel.findById(id, (error, videoCarousel) => {
+  videoCarouselModel.findById(id,undefined,undefined, (error, videoCarousel) => {
     if (error) {
       next(error);
       return;
@@ -92,7 +92,7 @@ export const del = (
   next: NextFunction
 ) => {
   const videoCarousel = request.videoCarousel as IVideoCarousel;
-  videoCarousel.remove((error, result) => {
+  videoCarousel.remove(undefined,(error, result) => {
     if (error) {
       next(error);
       return;
