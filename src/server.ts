@@ -16,8 +16,7 @@ connect(
     useUnifiedTopology: true,
     useCreateIndex: true,
     user: config.secrets.dbUsername,
-    pass: config.secrets.dbPassword,
-    authSource: 'admin'
+    pass: config.secrets.dbPassword
   }
 );
 const app = express();
