@@ -1,5 +1,5 @@
 import morgan = require('morgan');
-import {urlencoded,json} from 'body-parser';
+import { urlencoded, json } from 'body-parser';
 import { Express } from 'express';
 import cors = require('cors');
 import override from 'method-override';

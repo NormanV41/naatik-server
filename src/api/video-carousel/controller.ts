@@ -12,18 +12,23 @@ export const param = (
   next: NextFunction,
   id: string
 ) => {
-  videoCarouselModel.findById(id,undefined,undefined, (error, videoCarousel) => {
-    if (error) {
-      next(error);
-      return;
+  videoCarouselModel.findById(
+    id,
+    undefined,
+    undefined,
+    (error, videoCarousel) => {
+      if (error) {
+        next(error);
+        return;
+      }
+      if (!videoCarousel) {
+        next(new NoElementError());
+        return;
+      }
+      request.videoCarousel = videoCarousel;
+      next();
     }
-    if (!videoCarousel) {
-      next(new NoElementError());
-      return;
-    }
-    request.videoCarousel = videoCarousel;
-    next();
-  });
+  );
 };
 
 export const get = (
@@ -92,7 +97,7 @@ export const del = (
   next: NextFunction
 ) => {
   const videoCarousel = request.videoCarousel as IVideoCarousel;
-  videoCarousel.remove(undefined,(error, result) => {
+  videoCarousel.remove(undefined, (error, result) => {
     if (error) {
       next(error);
       return;

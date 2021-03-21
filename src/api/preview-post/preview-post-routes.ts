@@ -10,7 +10,6 @@ import {
 } from './preview-post-controller';
 import { checkUser } from '../../auth/auth';
 
-
 const previewPostRouter = Router();
 
 previewPostRouter.param('id', param);

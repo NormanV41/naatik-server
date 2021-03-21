@@ -5,19 +5,17 @@ import { testing } from './testing';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
-const secretsPath = join(__dirname,'../../secrets.json')
+const secretsPath = join(__dirname, '../../secrets.json');
 
-const secrets = JSON.parse(
-  readFileSync(secretsPath, { encoding: 'utf8' })
-) as {
+const secrets = JSON.parse(readFileSync(secretsPath, { encoding: 'utf8' })) as {
   jwtDev: string;
   emailPassword: string;
   dbUsername: string;
   dbPassword: string;
 };
 
-if(!process.env.APP_ROOT){
-  throw new Error('set APP_ROOT environment variable')
+if (!process.env.APP_ROOT) {
+  throw new Error('set APP_ROOT environment variable');
 }
 
 const nonEnvConfig = {
@@ -39,8 +37,6 @@ const nonEnvConfig = {
 
 process.env.NODE_ENV = process.env.NODE_ENV || nonEnvConfig.dev;
 nonEnvConfig.env = process.env.NODE_ENV;
-
-
 
 let envConfig: {
   logging?: boolean;

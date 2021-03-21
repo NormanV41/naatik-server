@@ -11,7 +11,7 @@ import { config } from '../../config/config';
 
 const storage = multer.diskStorage({
   destination: (request, file, callback) => {
-    callback(null, config.appRoot+'public/assets/img/');
+    callback(null, config.appRoot + 'public/assets/img/');
   },
   filename: (request, file, callback) => {
     const name = new Date().toJSON() + file.originalname;
@@ -26,7 +26,7 @@ export const param = (
   next: NextFunction,
   id: string
 ) => {
-  previewPostModel.findById(id,undefined,undefined, (error, previewPost) => {
+  previewPostModel.findById(id, undefined, undefined, (error, previewPost) => {
     if (error) {
       next(error);
       return;
@@ -120,7 +120,7 @@ export const del = (
     next(new NoElementError());
     return;
   }
-  previewPost.remove(undefined,(error, result) => {
+  previewPost.remove(undefined, (error, result) => {
     if (error) {
       next(error);
       return;

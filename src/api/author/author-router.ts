@@ -10,7 +10,6 @@ import {
   del
 } from './author-controller';
 
-
 const authorRouter = Router();
 
 authorRouter.param('id', param);

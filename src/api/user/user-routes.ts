@@ -2,8 +2,6 @@ import { Router } from 'express';
 import { checkUser } from '../../auth/auth';
 import { param, get, post, getOne, put, del, me } from './user-controller';
 
-
-
 const userRouter = Router();
 
 userRouter.param('id', param);

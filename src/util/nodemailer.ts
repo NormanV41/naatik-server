@@ -2,7 +2,6 @@ import { createTransport } from 'nodemailer';
 import { config } from '../config/config';
 import { logger } from './logger';
 
-
 export const transporter = createTransport({
   host: 'smtp.live.com',
   secure: false,

@@ -20,18 +20,23 @@ const decodeToken = () => {
 const getFreshUser = () => {
   return (request: ICustomRequest, response: Response, next: NextFunction) => {
     const user = request.user as { _id: string };
-    userModel.findById(user._id, '-password',undefined, (error, userDocument) => {
-      if (error) {
-        next(error);
-        return;
+    userModel.findById(
+      user._id,
+      '-password',
+      undefined,
+      (error, userDocument) => {
+        if (error) {
+          next(error);
+          return;
+        }
+        if (!userDocument) {
+          response.status(401).send('Unauthorized');
+          return;
+        }
+        request.userRequesting = userDocument;
+        next();
       }
-      if (!userDocument) {
-        response.status(401).send('Unauthorized');
-        return;
-      }
-      request.userRequesting = userDocument;
-      next();
-    });
+    );
   };
 };
 
@@ -43,7 +48,7 @@ export const verifyUSer = () => {
       response.status(400).send('You need a username and password');
       return;
     }
-    userModel.findOne({ username },undefined,undefined, (error, user) => {
+    userModel.findOne({ username }, undefined, undefined, (error, user) => {
       if (error) {
         next(error);
         return;
@@ -63,9 +68,14 @@ export const verifyUSer = () => {
 };
 
 export const signToken = (id: string) => {
-  return sign({ _id: id }, config.secrets.jwt, {
-    expiresIn: config.expireTime
-  });
+  const currentTime = new Date().getTime();
+  return sign(
+    { _id: id, iat: currentTime, exp: currentTime + config.expireTime * 1000 },
+    config.secrets.jwt,
+    {
+      expiresIn: config.expireTime
+    }
+  );
 };
 
 export const unAuthorizedErrorHandler = (
