@@ -8,7 +8,7 @@ import { logger } from '../util/logger';
 
 const checkToken = expressJwt({ secret: config.secrets.jwt });
 
-export const decodeToken = () => {
+const decodeToken = () => {
   return (request: Request, response: Response, next: NextFunction) => {
     if (request.query && request.query.hasOwnProperty('acces_token')) {
       request.headers.authorization = 'Bearer ' + request.query.acces_token;
@@ -17,7 +17,7 @@ export const decodeToken = () => {
   };
 };
 
-export const getFreshUser = () => {
+const getFreshUser = () => {
   return (request: ICustomRequest, response: Response, next: NextFunction) => {
     const user = request.user as { _id: string };
     userModel.findById(user._id, '-password',undefined, (error, userDocument) => {
@@ -81,3 +81,5 @@ export const unAuthorizedErrorHandler = (
   }
   next(error);
 };
+
+export const checkUser = [decodeToken(), getFreshUser()];

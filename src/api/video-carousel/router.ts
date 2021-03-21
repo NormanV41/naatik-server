@@ -1,8 +1,6 @@
-import { decodeToken, getFreshUser } from '../../auth/auth';
+import { checkUser } from '../../auth/auth';
 import { Router } from 'express';
 import { param, get, post, getOne, put, del } from './controller';
-
-const checkUser = [decodeToken(), getFreshUser()];
 
 const videoCarouselRouter = Router();
 

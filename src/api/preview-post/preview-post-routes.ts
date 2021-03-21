@@ -8,9 +8,8 @@ import {
   del,
   upload
 } from './preview-post-controller';
-import { decodeToken, getFreshUser } from '../../auth/auth';
+import { checkUser } from '../../auth/auth';
 
-const checkUser = [decodeToken(), getFreshUser()];
 
 const previewPostRouter = Router();
 

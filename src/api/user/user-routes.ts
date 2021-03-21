@@ -1,8 +1,8 @@
 import { Router } from 'express';
+import { checkUser } from '../../auth/auth';
 import { param, get, post, getOne, put, del, me } from './user-controller';
-import { decodeToken, getFreshUser } from '../../auth/auth';
 
-const checkUser = [decodeToken(), getFreshUser()];
+
 
 const userRouter = Router();
 

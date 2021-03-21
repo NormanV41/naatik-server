@@ -1,8 +1,6 @@
-import { decodeToken, getFreshUser } from '../../auth/auth';
+import { checkUser } from '../../auth/auth';
 import { Router } from 'express';
 import { param, upload, post, getOne, put, del } from './post-controller';
-
-const checkUser = [decodeToken(), getFreshUser()];
 
 const postRouter = Router();
 

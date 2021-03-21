@@ -1,4 +1,4 @@
-import { decodeToken, getFreshUser } from '../../auth/auth';
+import { checkUser } from '../../auth/auth';
 import { Router } from 'express';
 import {
   param,
@@ -10,7 +10,6 @@ import {
   del
 } from './author-controller';
 
-const checkUser = [decodeToken(), getFreshUser()];
 
 const authorRouter = Router();
 
