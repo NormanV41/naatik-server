@@ -10,9 +10,8 @@ const checkToken = expressJwt({ secret: config.secrets.jwt });
 
 const decodeToken = () => {
   return (request: Request, response: Response, next: NextFunction) => {
-    if (request.query && request.query.hasOwnProperty('acces_token')) {
-      request.headers.authorization = 'Bearer ' + request.query.acces_token;
-    }
+    const accessToken = request.cookies.access_token as string | undefined;
+    request.headers.authorization = accessToken;
     checkToken(request, response, next);
   };
 };
@@ -71,10 +70,7 @@ export const signToken = (id: string) => {
   const currentTime = new Date().getTime();
   return sign(
     { _id: id, iat: currentTime, exp: currentTime + config.expireTime * 1000 },
-    config.secrets.jwt,
-    {
-      expiresIn: config.expireTime
-    }
+    config.secrets.jwt
   );
 };
 

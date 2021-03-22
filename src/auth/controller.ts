@@ -11,5 +11,14 @@ export const signIn = (
 ) => {
   const user = request.userRequesting as IUser;
   const token = signToken(user._id);
-  response.json({ token, expiresIn: config.expireTime });
+  const oneDayInMilliSeconds = 24 * 60 * 60 * 1000;
+  const expires = new Date(Date.now() + oneDayInMilliSeconds);
+  const shouldBeSecure = config.env === config.prod;
+  response
+    .cookie('access_token', `Bearer ${token}`, {
+      secure: shouldBeSecure,
+      expires
+    })
+    .status(201)
+    .send();
 };

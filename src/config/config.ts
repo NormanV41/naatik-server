@@ -14,17 +14,13 @@ const secrets = JSON.parse(readFileSync(secretsPath, { encoding: 'utf8' })) as {
   dbPassword: string;
 };
 
-if (!process.env.APP_ROOT) {
-  throw new Error('set APP_ROOT environment variable');
-}
-
 const nonEnvConfig = {
   dev: 'development',
   test: 'testing',
   prod: 'production',
   port: process.env.PORT || 4242,
   env: '',
-  appRoot: process.env.APP_ROOT,
+  appRoot: process.env.APP_ROOT || process.cwd(),
   expireTime: 60 * 60 * 24,
   serverBaseUrl: 'http://localhost:4242',
   secrets: {
@@ -35,8 +31,7 @@ const nonEnvConfig = {
   }
 };
 
-process.env.NODE_ENV = process.env.NODE_ENV || nonEnvConfig.dev;
-nonEnvConfig.env = process.env.NODE_ENV;
+nonEnvConfig.env = process.env.NODE_ENV || nonEnvConfig.dev;
 
 let envConfig: {
   logging?: boolean;

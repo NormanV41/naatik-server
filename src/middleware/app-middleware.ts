@@ -4,6 +4,7 @@ import { Express } from 'express';
 import cors = require('cors');
 import override from 'method-override';
 import nocache from 'nocache';
+import cookieParser from 'cookie-parser';
 
 export const appMiddleware = (app: Express) => {
   app.use(nocache());
@@ -12,4 +13,5 @@ export const appMiddleware = (app: Express) => {
   app.use(json());
   app.use(cors());
   app.use(override());
+  app.use(cookieParser());
 };
