@@ -8,7 +8,7 @@ import { join } from 'path';
 const secretsPath = join(__dirname, '../../secrets.json');
 
 const secrets = JSON.parse(readFileSync(secretsPath, { encoding: 'utf8' })) as {
-  jwtDev: string;
+  jwt: string;
   emailPassword: string;
   dbUsername: string;
   dbPassword: string;
@@ -24,8 +24,8 @@ const nonEnvConfig = {
   expireTime: 60 * 60 * 24,
   serverBaseUrl: 'http://localhost:4242',
   secrets: {
-    jwt: process.env.JWT || secrets.jwtDev,
-    emailPassword: process.env.jwtDev || secrets.emailPassword,
+    jwt: secrets.jwt,
+    emailPassword: secrets.emailPassword,
     dbUsername: secrets.dbUsername,
     dbPassword: secrets.dbPassword
   }

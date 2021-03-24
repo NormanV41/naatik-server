@@ -37,7 +37,7 @@ create a the following file
 ```
 // secrets.json
 {
-  "jwtDev": string,
+  "jwt": string,
   "emailPassword": string,
   "dbPassword": string,
   "dbUsername": string
