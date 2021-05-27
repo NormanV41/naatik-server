@@ -4,7 +4,7 @@ import { logger } from '../../util/logger';
 
 export interface IUser extends Document {
   username: string;
-  password: string;
+  password?: string;
   authenticate(password: string): boolean;
   encryptPassword(password: string): string;
   deletePassword(): { _id: string; username: string; __v: number };
@@ -19,7 +19,7 @@ const userSchema = new Schema<IUser>(
 );
 
 userSchema.methods.authenticate = function(plainTextPassword) {
-  return compareSync(plainTextPassword, this.password);
+  return compareSync(plainTextPassword, this.password || '');
 };
 
 userSchema.methods.encryptPassword = (plainTextPassword) => {
@@ -41,6 +41,9 @@ userSchema.methods.deletePassword = function() {
 userSchema.pre<IUser>('save', function(next) {
   if (!this.isModified('password')) {
     return next();
+  }
+  if (!this.password) {
+    throw new Error('password should not be undefined');
   }
   this.password = this.encryptPassword(this.password);
   next();
