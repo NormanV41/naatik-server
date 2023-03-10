@@ -1,7 +1,7 @@
 export const development = {
   logging: true,
   db: {
-    url: `mongodb://localhost/naatik-website-development`
+    url: `mongodb://127.0.0.1/naatik-website-development`
   },
   targetContactEmail: 'nrvasquez41@hotmail.com'
 };
