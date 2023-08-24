@@ -3,10 +3,10 @@ import { config } from '../config/config';
 import { logger } from './logger';
 
 export const transporter = createTransport({
-  host: 'smtp.live.com',
+  host: 'smtp.office365.com',
   secure: false,
   auth: {
-    user: 'nvasquez@serviciosap.com',
+    user: 'nvasquez@naatik.com',
     pass: config.secrets.emailPassword
   }
 });
